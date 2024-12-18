@@ -1,0 +1,24 @@
+// Query to find the average score of passed students
+
+db.students.aggregate([
+    {$match: { status: "passed"}},
+    {$group:{_id:null,averageScore:{$avg:"$score"}}}
+])
+
+// Geospatial Indexing
+
+// In MongoDB, geospatial indexing is used to efficiently query and analyze spatial data.
+// MongoDB supports two main types of geospatial indexes: 2d indexes and 2d sphere indexes.
+// These indexes allow you to perform geospatial queries, such as finding documents near
+//  a specific location or within a certain area.
+
+// 2d Index
+db.yourCollection.createIndex({locationField:"2d"})
+// 2d Sphere Index
+db.yourCollection.createIndex({locationField:"2dsphere"})
+
+// Once the index is created, you can use various geospatial operators to query the data.
+//  Some common operators include:
+// $near: Returns documents near a specified location.
+// $geoWithin: Returns documents that are within a specified geometry.
+// $geoIntersects: Returns documents that intersect with a specified geometry.
